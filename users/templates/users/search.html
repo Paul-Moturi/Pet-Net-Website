@@ -1,0 +1,19 @@
+<h1>Search for Friends</h1>
+<form method="get" action="{% url 'search_friends' %}">
+    <label for="query">Search for friends:</label>
+    <input type="text" id="query" name="query" maxlength="100" required>
+    <button type="submit">Search</button>
+</form>
+
+{% if query %}
+    <h2>Results for "{{ query }}":</h2>
+    <ul>
+        <!-- result from the return from views -->
+        {% for user in results %}
+            <li>{{ user.username }}</li>
+        <!-- when result is empty...... -->    
+        {% empty %}
+            <li>No results found.</li>
+        {% endfor %}
+    </ul>
+{% endif %}
